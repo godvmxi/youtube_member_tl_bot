@@ -39,7 +39,9 @@ if not credentials or not credentials.valid:
             client_secrets_file,
             scopes=[
                 'https://www.googleapis.com/auth/youtube.readonly',
-                'https://www.googleapis.com/auth/youtube.channel-memberships.creator'
+                'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
+                'https://www.googleapis.com/auth/youtube.force-ssl',
+                'https://www.googleapis.com/auth/youtube'
             ]
         )
 
