@@ -55,37 +55,58 @@ if not credentials or not credentials.valid:
             pickle.dump(credentials, f)
 
 youtube = build("youtube","v3", credentials=credentials)
-request = youtube.playlistItems().list(
-    part="status",
-    playlistId="PLN5nQTzxyimOMcvGHBcmWzfAv9ROFow6_"
-)
-response = request.execute()
-pprint.pprint(response)
 
-request = youtube.playlistItems().list(
-    part="status",
-    playlistId="LL3vyXU6vIGI3s_I63Mk_chA"
-)
-response = request.execute()
-pprint.pprint(response)
-try:
-    print("get sponsors ")
-    request = youtube.sponsors().list(
-        part="snippet"
+if 1:
+    request = youtube.playlistItems().list(
+        part="status",
+        playlistId="PLN5nQTzxyimOMcvGHBcmWzfAv9ROFow6_",
+        maxResults=2
     )
     response = request.execute()
     pprint.pprint(response)
-except Exception as ex:
-    print("get sponsors exception")
-    pprint.pprint(ex)
 
-try:
-    print("get member_ships_level")
-    request = youtube.membershipslevel().list(
-        part="snippet"
+    request = youtube.playlistItems().list(
+        part="status",
+        playlistId="LL3vyXU6vIGI3s_I63Mk_chA",
+        maxResults=2
     )
     response = request.execute()
+
     pprint.pprint(response)
-except Exception as ex:
-    print("get member_ships_level exception")
-    pprint.pprint(ex)
+if 0:
+    try:
+        print("get playlists ")
+        request = youtube.playlists().list(
+            part="snippet,contentDetails",
+            mine=True
+        )
+        response = request.execute()
+        pprint.pprint(response)
+    except Exception as ex:
+        print("get playlists exception")
+        pprint.pprint(ex)
+    pprint.pprint(response)
+
+if True:
+    try:
+        print("get members ")
+        request = youtube.members().list(
+            part="snippet"
+        )
+        response = request.execute()
+        pprint.pprint(response)
+    except Exception as ex:
+        print("get members exception")
+        pprint.pprint(ex)
+
+if True:
+    try:
+        print("get member_ships_level")
+        request = youtube.membershipsLevels().list(
+            part="snippet,id"
+        )
+        response = request.execute()
+        pprint.pprint(response)
+    except Exception as ex:
+        print("get member_ships_level exception")
+        pprint.pprint(ex)
